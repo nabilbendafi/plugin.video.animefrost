@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addon id="plugin.video.animefrost" name="Anime Frost" version="0.1" provider-name="animefrost">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.beautifulsoup" version="3.2.0"/>
+    <import addon="script.module.mechanize" version="0.2.5"/>
+    <import addon="script.module.xbmcswift2" version="2.4.0"/>
+    <import addon="script.module.urlresolver" version="2.10.0"/>
+    <import addon="script.module.pydevd" version="4.4.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="addon.py">
+    <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <language/>
+    <license>GNU GENERAL PUBLIC LICENSE. Version 2, June 1991</license>
+    <website>http://www.animeseed.com/</website>
+    <summary lang="en">Watch Anime Stream in HD !</summary>
+    <description lang="en">Watch and stream free Anime Movies and Episodes online. Your number one source for anime streaming.</description>
+  </extension>
+</addon>
