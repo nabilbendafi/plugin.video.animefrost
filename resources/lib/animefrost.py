@@ -172,6 +172,30 @@ class API():
         iframe_elem = main_elem.find('iframe')
         video_url = iframe_elem.get('src')
 
+        # 2-step video url retrieval
+        pattern = 'https?://(docs|drive).google.com/file/d/(?P<video_id>.*)/preview'
+        regex = re.compile(pattern)
+        video_id = re.search(regex, video_url)
+
+        if video_id:
+            video_id = video_id.groupdict()['video_id']
+
+            url = 'https://drive.google.com/file/d/%(video_id)s/' % {'video_id': video_id}
+            print(url)
+            main_elem = self.get_html_tree(url)
+
+            for script_elem in main_elem.findAll('script'):
+                text = script_elem.text
+                if 'fmt_stream_map' in text:
+                    pattern = '\|(?P<link>https:[^|]*)\|https.*'
+                    regex = re.compile(pattern)
+                    video_url = re.findall(regex, text)[0]
+
+                    # Some coding/decode stuff
+                    video_url = video_url.decode('unicode_escape')
+                    video_url = video_url.encode('utf-8')
+                    break
+
         return video_url
 
     def get_html_tree(self, endpoint=''):
