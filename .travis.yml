@@ -3,8 +3,7 @@ language: python
 python: "2.7"
 
 env:
-  - BEAUTIFULSOUP_VERSION=3.2.1
-  - VERBOSITY=3
+  - BEAUTIFULSOUP_VERSION=3.2.1 VERBOSITY=3
 
 branches:
   only:
