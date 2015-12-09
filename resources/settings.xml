@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="31001">
+        <setting id="remote_debugger" type="bool" label="31002" default="false"/>
+        <setting id="remote_debugger_host" type="ipaddress" label="31003" default="127.0.0.1"/>
+        <setting id="remote_debugger_port" type="number" label="31004" default="5678"/>
+    </category>
+</settings>

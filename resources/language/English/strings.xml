@@ -2,5 +2,8 @@
 <strings>
   <!-- Plugin name -->
   <string id="30000">animefrost</string>
+  <string id="31001">Debug</string>
+  <string id="31002">Enable</string>
+  <string id="31003">Host</string>
+  <string id="31004">Port</string>
 </strings>
-

@@ -183,6 +183,27 @@ def show_faq():
 
 
 if __name__ == '__main__':
+    try:
+        remote_debugger = addon.getSetting('remote_debugger')
+        # default false
+        remote_debugger_host = addon.getSetting('remote_debugger_host')
+        # default '127.0.0.1'
+        remote_debugger_port = addon.getSetting('remote_debugger_port')
+        # default 5678
+
+        # append pydev remote debugger
+        if remote_debugger == 'true':
+            import pydevd
+            # stdoutToServer and stderrToServer redirect stdout and stderr
+            # to eclipse console
+            pydevd.settrace(remote_debugger_host, port=remote_debugger_port,
+                            stdoutToServer=True, stderrToServer=True)
+    except ImportError:
+        plugin.log.error("Error: make sure pydevd is installed !")
+        sys.exit(1)
+    except:
+        pass
+
     # Rock'n'Roll
     try:
         plugin.run()
