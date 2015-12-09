@@ -80,6 +80,9 @@ class API():
         animes = []
         last_page = 1
 
+        if not html_elem:
+            return animes
+
         # find last page index
         last_page_elem = html_elem.findAll('a', {'class': 'page-numbers'})
         if last_page_elem:
@@ -147,6 +150,9 @@ class API():
 
         main_elem = self.get_html_tree(url)
 
+        if not main_elem:
+            return episodes
+
         ul_elem = main_elem.find('ul', {'class': 'pagination post-episode'})
         a_elems = ul_elem.findAll('a')
         for a_elem in a_elems:
@@ -168,7 +174,12 @@ class API():
         url = 'watch/%(anime)s/?episode=%(episode)s' % {'anime': anime,
                                                         'episode': episode}
 
+        video_url = ''
+
         main_elem = self.get_html_tree(url)
+
+        if not main_elem:
+            return video_url
 
         iframe_elem = main_elem.find('iframe')
         video_url = iframe_elem.get('src')
