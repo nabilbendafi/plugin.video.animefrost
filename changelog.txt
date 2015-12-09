@@ -1,2 +1,6 @@
+v0.0.2
+- Fix Google video URL resolution
+- Show all video list
+
 v0.0.1
 - Initial commit

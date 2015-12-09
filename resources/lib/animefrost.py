@@ -85,7 +85,8 @@ class API():
         if last_page_elem:
             last_page = int(last_page_elem[-1].getText())
 
-        div_elems = html_elem.findAll('div', {'class': 'col-sm-4 col-xs-6 item responsive-height'})
+        div_elems = html_elem.findAll('div', {'class': lambda x: x
+                                                       and 'item' in x.split()})
         for div_elem in div_elems:
             a_elem = div_elem.findAll('a')[-1]
             img_elem = div_elem.find('img')
@@ -181,7 +182,6 @@ class API():
             video_id = video_id.groupdict()['video_id']
 
             url = 'https://drive.google.com/file/d/%(video_id)s/' % {'video_id': video_id}
-            print(url)
             main_elem = self.get_html_tree(url)
 
             for script_elem in main_elem.findAll('script'):
