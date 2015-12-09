@@ -3,7 +3,7 @@ language: python
 python: "2.7"
 
 env:
-  - PYTHONPATH=./resources/lib
+  - BEAUTIFULSOUP_VERSION=3.2.1
 
 branches:
   only:
@@ -11,6 +11,11 @@ branches:
 
 before_install:
   - sudo apt-get update -qq
+  - export PYTHONPATH=./resources/lib
+
+install:
+  # Install BeautifulSoup
+  - if [ "$BEAUTIFULSOUP_VERSION" = "latest" ]; then pip install beautifulsoup; else pip install beautifulsoup==$BEAUTIFULSOUP_VERSION; fi
 
 script:
   # Run tests
