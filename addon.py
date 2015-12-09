@@ -113,7 +113,7 @@ def get_episode(anime, episode='1'):
     :param episode: episode number.
     """
     episode = api.get_episode(anime, episode)
- 
+
     item = {'label': anime,
             'path': plugin.url_for('play',
                                    url=episode),
