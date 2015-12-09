@@ -1,6 +1,8 @@
 plugin.video.animefrost
 =======================
 
+[![Build Status](https://travis-ci.org/nabilbendafi/plugin.video.animefrost.png?branch=master)](https://travis-ci.org/nabilbendafi/plugin.video.animefrost)
+
 Kodi Video Add-on for animefrost.net
 
 This plugin is not related in any way to animefrost.net team or staff member

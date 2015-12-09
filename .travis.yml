@@ -16,6 +16,8 @@ before_install:
 install:
   # Install BeautifulSoup
   - if [ "$BEAUTIFULSOUP_VERSION" = "latest" ]; then pip install beautifulsoup; else pip install beautifulsoup==$BEAUTIFULSOUP_VERSION; fi
+  # Install Mechanize
+  - pip install mechanize
 
 script:
   # Run tests
