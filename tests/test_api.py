@@ -132,6 +132,12 @@ class AnimeFrostTestCase(unittest.TestCase):
 
         self.assertTrue(featured)
 
+    def test_latest(self):
+        """Tests latest anime list."""
+        latest = self.api.get_latest()
+
+        self.assertTrue(latest)
+
     def tearDown(self):
         pass
 
