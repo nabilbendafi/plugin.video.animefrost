@@ -26,6 +26,7 @@ api = animefrost()
 def index():
     """Display plugin main menu items."""
     entries = {'A-Z': 'get_all',
+               'Featured Videos': 'get_featured',
                'Categories': 'get_categories',
                'Search': 'video_search',
                'FAQ': 'show_faq'}
@@ -155,6 +156,20 @@ def video_search_result(search_string):
               'path': plugin.url_for('get_anime',
                                      anime=item['path']),
               'thumbnail': item['thumbnail']
+              } for item in items]
+
+    return items
+
+
+@plugin.cached_route('/featured/')
+def get_featured():
+    items = api.get_featured()
+
+    items = [{'label': item['label'],
+              'path': plugin.url_for('get_anime',
+                                     anime=item['path']),
+              'thumbnail': item['thumbnail'],
+              'is_playable': False
               } for item in items]
 
     return items

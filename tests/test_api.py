@@ -126,6 +126,12 @@ class AnimeFrostTestCase(unittest.TestCase):
         results = self.api.search(pattern='not_an_anime')
         self.assertFalse(results)
 
+    def test_featured(self):
+        """Tests featured anime list."""
+        featured = self.api.get_featured()
+
+        self.assertTrue(featured)
+
     def tearDown(self):
         pass
 

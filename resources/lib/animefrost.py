@@ -212,6 +212,31 @@ class API():
 
         return video_url
 
+    def get_featured(self):
+        """Find all featured anime available."""
+        animes = []
+
+        main_elem = self.get_html_tree()
+
+        if not main_elem:
+            return animes
+
+        feature_elem = main_elem.find('div', {'class': 'featured-wrapper'})
+        item_elems = feature_elem.findAll('div', {'class': 'item-img'})
+        for item_elem in item_elems:
+            a_elem = item_elem.find('a')
+            img_elem = a_elem.find('img')
+
+            path = urlparse.urlsplit(a_elem.get('href'))[2]
+            regex = re.compile('/watch/(?P<anime>.*)/')
+
+            anime = {'label': a_elem.get('title'),
+                     'path': re.search(regex, path).groupdict()['anime'],
+                     'thumbnail': img_elem.get('src')}
+            animes.append(anime)
+
+        return animes
+
     def get_html_tree(self, endpoint=''):
         """Return HTML tree as url is browsed.
 
