@@ -111,7 +111,20 @@ class AnimeFrostTestCase(unittest.TestCase):
         self.assertEqual(query_attrs, another_query_attrs)
 
     def test_search(self):
-        pass
+        """Tests search result."""
+        pattern = 'naruto'
+
+        results = self.api.search(pattern=pattern)
+
+        self.assertTrue(results)
+        for result in results:
+            self.assertIn(pattern, result['path'])
+
+        results = self.api.search(page=99, pattern=pattern)
+        self.assertFalse(results)
+
+        results = self.api.search(pattern='not_an_anime')
+        self.assertFalse(results)
 
     def tearDown(self):
         pass

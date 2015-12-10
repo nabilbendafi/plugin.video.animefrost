@@ -121,12 +121,15 @@ class API():
     def search(self, page=1, pattern=''):
         pattern = urllib.quote(pattern)
 
-        url = 'page(page)%d?s=%(pattern)s' % {'pattern': pattern,
+        url = 'page%(page)d?s=%(pattern)s' % {'pattern': pattern,
                                               'page': page}
 
         search = []
 
         search_elem = self.get_html_tree(url)
+
+        if not search_elem:
+            return search
 
         div_elem = search_elem.find('div', {'class': 'alert alert-info'})
         # no anime found matching search

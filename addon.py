@@ -27,6 +27,7 @@ def index():
     """Display plugin main menu items."""
     entries = {'A-Z': 'get_all',
                'Categories': 'get_categories',
+               'Search': 'video_search',
                'FAQ': 'show_faq'}
 
     items = [{'label': entry,
@@ -105,7 +106,7 @@ def get_anime(anime):
     return items
 
 
-@plugin.route('/anime/<anime>/episode/<episode>')
+@plugin.cached_route('/anime/<anime>/episode/<episode>')
 def get_episode(anime, episode='1'):
     """Display the video for the requested anime and episode.
 
@@ -141,7 +142,8 @@ def video_search_result(search_string):
 
     :param search_string: anime to look for.
     """
-    items = api.search(search_string)
+    items = api.search(pattern=search_string)
+    print(items)
 
     if not items:
         msg = 'Sorry, no match found for: ' % search_string
@@ -151,7 +153,7 @@ def video_search_result(search_string):
 
     items = [{'label': item['label'],
               'path': plugin.url_for('get_anime',
-                                     anime=item['url']),
+                                     anime=item['path']),
               'thumbnail': item['thumbnail']
               } for item in items]
 
